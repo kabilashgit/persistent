@@ -2,8 +2,8 @@ import React from "react";
 
 function SalesGraph() {
   return (
-    <div className="connectedSortable">
-      <div className="card bg-gradient-info">
+    <div className="">
+      <div className="card bg-gradient-info connectedSortable">
         <div className="card-header border-0">
           <h3 className="card-title">
             <i className="fas fa-th mr-1"></i>
@@ -31,9 +31,9 @@ function SalesGraph() {
             className="chart"
             id="line-chart"
             style={{
-              minHeight: "250px",
-              height: "250px",
-              maxHeight: "250px",
+              minHeight: "200px",
+              height: "200px",
+              maxHeight: "400px",
               maxWidth: "100%",
             }}
           />

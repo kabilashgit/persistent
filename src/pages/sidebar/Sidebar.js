@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./sidebar.scss";
 function Sidebar() {
   return (
@@ -15,14 +16,14 @@ function Sidebar() {
             </div>
             <div className="info">
               <a href="#" className="d-block">
-                Alexander Pierce
+                Manikandan K
               </a>
             </div>
-            <div className="info">
+            {/* <div className="info">
               <a data-widget="pushmenu" href="#" role="button">
                 <i className="fas fa-times"></i>
               </a>
-            </div>
+            </div> */}
           </div>
 
           <nav className="mt-2">
@@ -55,10 +56,16 @@ function Sidebar() {
                 </ul>
               </li> */}
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <Link to="/" className="nav-link">
+                  <i className="nav-icon fas fa-th"></i>
+                  <p>Dashboard</p>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/clients" className="nav-link">
                   <i className="nav-icon fas fa-th"></i>
                   <p>Clients</p>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">

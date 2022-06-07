@@ -2,8 +2,8 @@ import React from "react";
 
 function WorldMap() {
   return (
-    <div className="connectedSortable">
-      <div className="card bg-gradient-primary">
+    <div className="">
+      <div className="card bg-gradient-primary connectedSortable">
         <div className="card-header border-0">
           <h3 className="card-title">
             <i className="fas fa-map-marker-alt mr-1"></i>

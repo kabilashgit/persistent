@@ -2,8 +2,8 @@ import React from "react";
 
 function TodoList() {
   return (
-    <div>
-      <div className="card">
+    <div className="">
+      <div className="card connectedSortable">
         <div className="card-header">
           <h3 className="card-title">
             <i className="ion ion-clipboard mr-1"></i>
@@ -65,31 +65,6 @@ function TodoList() {
                 <i className="far fa-clock"></i> 2 mins
               </small>
 
-              <div className="tools">
-                <i className="fas fa-edit"></i>
-                <i className="fas fa-trash-o"></i>
-              </div>
-            </li>
-            <li>
-              <span className="handle">
-                <i className="fas fa-ellipsis-v"></i>
-                <i className="fas fa-ellipsis-v"></i>
-              </span>
-              <div className="icheck-primary d-inline ml-2">
-                <input
-                  type="checkbox"
-                  value=""
-                  onChange={() => console.log("todo list")}
-                  name="todo2"
-                  id="todoCheck2"
-                  checked
-                />
-                <label htmlFor="todoCheck2"></label>
-              </div>
-              <span className="text">Make the theme responsive</span>
-              <small className="badge badge-info">
-                <i className="far fa-clock"></i> 4 hours
-              </small>
               <div className="tools">
                 <i className="fas fa-edit"></i>
                 <i className="fas fa-trash-o"></i>

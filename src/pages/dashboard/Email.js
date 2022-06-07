@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 function Email() {
   const mailData = [
@@ -73,39 +73,71 @@ function Email() {
       stars: false,
     },
   ];
-  const mailGen = mailData.slice(0, 5).map((mail, index) => {
-    let { name, subject, body, date, stars } = mail;
+  const [perPage, setPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  useEffect(() => {
+    setTotalPages(Math.floor(mailData.length / perPage));
+  });
+
+  const handlePageClick = (e) => {
+    let page = e.target.id;
+    setCurrentPage(page);
+  };
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(mailData.length / perPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const renderPagination = pageNumbers.map((number) => {
     return (
-      <tr key={uuidv4()}>
-        <td>
-          <div className="icheck-primary">
-            <input type="checkbox" value="" id={`check${index}`} />
-            <label htmlFor={`check${index}`}></label>
-          </div>
-        </td>
-        <td className="mailbox-star">
-          <a href="#">
-            <i
-              className={`fas ${stars ? "fa-star" : "fa-star-0"} text-warning`}
-            ></i>
-          </a>
-        </td>
-        <td className="mailbox-name">
-          <a href="read-mail.html">{name}</a>
-        </td>
-        <td className="mailbox-subject">
-          <b>{mail.subject}</b> -{" "}
-          {body.length > 25 ? (body = body.substring(0, 24) + "...") : body}
-        </td>
-        <td className="mailbox-attachment"></td>
-        <td className="mailbox-date">{date}</td>
-      </tr>
+      <li type="button" className="page-item" key={number}>
+        <a id={number} className="page-link" onClick={handlePageClick}>
+          {number}
+        </a>
+      </li>
     );
   });
 
+  const mailGen = mailData
+    .slice(currentPage * perPage - perPage, currentPage * perPage)
+    .map((mail, index) => {
+      let { name, subject, body, date, stars } = mail;
+      return (
+        <tr key={uuidv4()}>
+          <td>
+            <div className="icheck-primary">
+              <input type="checkbox" value="" id={`check${index}`} />
+              <label htmlFor={`check${index}`}></label>
+            </div>
+          </td>
+          <td className="mailbox-star">
+            <a href="#">
+              <i
+                className={`fas ${
+                  stars ? "fa-star" : "fa-star-0"
+                } text-warning`}
+              ></i>
+            </a>
+          </td>
+          <td className="mailbox-name">
+            <a href="read-mail.html">{name}</a>
+          </td>
+          <td className="mailbox-subject">
+            <b>{mail.subject}</b> -{" "}
+            {body.length > 25 ? (body = body.substring(0, 24) + "...") : body}
+          </td>
+          <td className="mailbox-attachment"></td>
+          <td className="mailbox-date">{date}</td>
+        </tr>
+      );
+    });
+
   return (
-    <div>
-      <div className="card card-primary card-outline">
+    <div className="">
+      <div className="card card-primary card-outline connectedSortable">
         <div className="card-header">
           <h3 className="card-title">Inbox</h3>
           <div className="card-tools">
@@ -125,40 +157,42 @@ function Email() {
         </div>
 
         <div className="card-body p-0">
-          <div className="mailbox-controls text-left">
-            <button
-              type="button"
-              className="btn btn-default btn-sm checkbox-toggle"
-            >
-              <i className="far fa-square"></i>
-            </button>
-            <div className="btn-group">
-              <button type="button" className="btn btn-default btn-sm">
-                <i className="far fa-trash-alt"></i>
+          <div className="d-flex justify-content-between">
+            <div className="mailbox-controls text-left">
+              <button
+                type="button"
+                className="btn btn-default btn-sm checkbox-toggle"
+              >
+                <i className="far fa-square"></i>
               </button>
-              <button type="button" className="btn btn-default btn-sm">
-                <i className="fas fa-reply"></i>
-              </button>
-              <button type="button" className="btn btn-default btn-sm">
-                <i className="fas fa-share"></i>
-              </button>
-            </div>
-
-            <button type="button" className="btn btn-default btn-sm">
-              <i className="fas fa-sync-alt"></i>
-            </button>
-            <div className="float-right">
-              1-50/200
               <div className="btn-group">
                 <button type="button" className="btn btn-default btn-sm">
-                  <i className="fas fa-chevron-left"></i>
+                  <i className="far fa-trash-alt"></i>
                 </button>
                 <button type="button" className="btn btn-default btn-sm">
-                  <i className="fas fa-chevron-right"></i>
+                  <i className="fas fa-reply"></i>
                 </button>
+                <button type="button" className="btn btn-default btn-sm">
+                  <i className="fas fa-share"></i>
+                </button>
+              </div>
+
+              <button type="button" className="btn btn-default btn-sm">
+                <i className="fas fa-sync-alt"></i>
+              </button>
+            </div>
+            <div className="card-tools">
+              <div className="d-flex">
+                <span className="px-1">
+                  {currentPage} / {totalPages}
+                </span>
+                <ul className="pagination pagination-sm text-right">
+                  {renderPagination}
+                </ul>
               </div>
             </div>
           </div>
+
           <div className="table-responsive mailbox-messages">
             <table className="table table-hover table-striped">
               <tbody>{mailGen}</tbody>
@@ -167,39 +201,13 @@ function Email() {
         </div>
 
         <div className="card-footer p-0">
-          <div className="mailbox-controls">
-            <button
-              type="button"
-              className="btn btn-default btn-sm checkbox-toggle"
-            >
-              <i className="far fa-square"></i>
-            </button>
-            <div className="btn-group">
-              <button type="button" className="btn btn-default btn-sm">
-                <i className="far fa-trash-alt"></i>
-              </button>
-              <button type="button" className="btn btn-default btn-sm">
-                <i className="fas fa-reply"></i>
-              </button>
-              <button type="button" className="btn btn-default btn-sm">
-                <i className="fas fa-share"></i>
-              </button>
-            </div>
-
-            <button type="button" className="btn btn-default btn-sm">
-              <i className="fas fa-sync-alt"></i>
-            </button>
-            <div className="float-right">
-              1-50/200
-              <div className="btn-group">
-                <button type="button" className="btn btn-default btn-sm">
-                  <i className="fas fa-chevron-left"></i>
-                </button>
-                <button type="button" className="btn btn-default btn-sm">
-                  <i className="fas fa-chevron-right"></i>
-                </button>
-              </div>
-            </div>
+          <div className="card-tools d-flex justify-content-end">
+            <span className="px-1">
+              {currentPage} / {totalPages}
+            </span>
+            <ul className="pagination pagination-sm text-right">
+              {renderPagination}
+            </ul>
           </div>
         </div>
       </div>
