@@ -63,61 +63,61 @@ function Sidebar() {
               </li>
               <li className="nav-item">
                 <Link to="/clients" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-users"></i>
                   <p>Clients</p>
                 </Link>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-file"></i>
                   <p>Policies</p>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-calendar"></i>
                   <p>Calendar</p>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-address-book"></i>
                   <p>Directory</p>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-handshake"></i>
                   <p>Engagement</p>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-thumbs-up"></i>
                   <p>Deal Board</p>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-comments"></i>
                   <p>Text Messaging</p>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-bar-chart"></i>
                   <p>Reports</p>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-tasks"></i>
                   <p>Auto Task List</p>
                 </a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-th"></i>
+                  <i className="nav-icon fas fa-ticket"></i>
                   <p>Support</p>
                 </a>
               </li>
