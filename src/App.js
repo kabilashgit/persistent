@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import AppHeader from "./pages/appHeader/AppHeader";
 import Sidebar from "./pages/sidebar/Sidebar";

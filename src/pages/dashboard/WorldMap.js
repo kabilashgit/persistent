@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
+// import { VectorMap } from "react-jvectormap";
+import { VectorMap } from "@react-jvectormap/core";
+import { asiaMill } from "@react-jvectormap/asia";
 
 function WorldMap() {
+  const mapRef = useRef(0);
   return (
     <div className="">
       <div className="card bg-gradient-primary connectedSortable">
@@ -29,7 +33,26 @@ function WorldMap() {
           </div>
         </div>
         <div className="card-body">
-          <div id="worldMap" style={{ height: "250px", width: "100%" }}></div>
+          <div style={{ height: "250px", width: "100%" }}>
+            <VectorMap
+              map={asiaMill}
+              backgroundColor="transparent"
+              // ref={mapRef}
+              containerStyle={{
+                width: "100%",
+                height: "250px",
+              }}
+              regionStyle={{
+                initial: {
+                  fill: "#404759",
+                },
+                hover: {
+                  fill: "#E65555",
+                },
+              }}
+              containerClassName="map"
+            />
+          </div>
         </div>
 
         <div className="card-footer bg-transparent">
