@@ -131,7 +131,7 @@ function ClientDirectory() {
 
     if (keyword !== "") {
       const results = contactList.filter((user) => {
-        return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+        return user.name.toLowerCase().includes(keyword.toLowerCase());
       });
       setFoundUser(results);
     } else {
